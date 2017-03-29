@@ -1,0 +1,1 @@
+"\\PSCETLP00102.ad.insidemedia.net\MECAnalytics\Client\DFA\PortablePython2.7.6.1\App\python.exe" "\\PSCETLP00102.ad.insidemedia.net\MECAnalytics\Client\DFA\DFA Download\GetDFAfiles.py" --client %1 --folder "\\PSCETLP00102\MECAnalytics\Client\Michelin\Michelin US\Raw Data\DFA" --startdate %2
