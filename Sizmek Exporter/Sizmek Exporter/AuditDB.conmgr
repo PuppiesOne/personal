@@ -1,0 +1,24 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:DelayValidation="True"
+  DTS:ObjectName="AuditDB"
+  DTS:DTSID="{ABC25250-3665-47B3-9249-AFDA50AB1D33}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::AuditDB_DatabaseName]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="Password">@[$Project::AuditDB_Password]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::AuditDB_ServerName]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="UserName">@[$Project::AuditDB_UserName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:Retain="True"
+      DTS:ConnectionString="Data Source=PSCSQCU00103Q\SQLINS07, 4507;User ID=MEC_APP_USER;Initial Catalog=PDWTracker;Provider=SQLNCLI11.1;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAohvc7PSRcE+NGEtVx76KPQAAAAACAAAAAAADZgAAwAAAABAAAAD9vDDCwvAU9c0+x6c3sVTPAAAAAASAAACgAAAAEAAAAIMWxdNNce1d2MfpKggGkd94AAAAyDXLJI301DBizflOYoKHOxYnh2V6uD/BnCAagEPhAuPVyqz0BKqtwotFFwI2l2+IwNDAOnzrx9ig9PheVDxBLk7H1ZSQjK4LMDqQa3o1aoapSI78T10rsG7tapid3wgmrptYw5dMyudT4zWhWHxaf6Ox/i9yEcRMFAAAANv55rJSzlhPEoPw4/zEhAH76vke</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

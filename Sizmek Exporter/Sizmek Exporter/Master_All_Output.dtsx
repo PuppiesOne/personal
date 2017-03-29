@@ -1,0 +1,1218 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/3/2014 2:16:22 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="NYCMECAI2W7"
+  DTS:CreatorName="AD\john.miller"
+  DTS:DTSID="{BFA4C294-CFF4-4DF4-A9A1-1777FAA3C063}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3402.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Master_All_Output"
+  DTS:PackageType="5"
+  DTS:VersionBuild="322"
+  DTS:VersionGUID="{451C50AD-09A8-4F18-8080-60F408FA8D7A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{627743BB-63F0-4057-870D-9926498F46B3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Batch_Name">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0133A6D1-248C-4F2C-BA4D-7D1DBCAE616A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="connstring">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BEE3774D-924F-4A9D-85BD-FD0ACD477111}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Custom_File_Name_Flag">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{09E7D01C-A0F6-4CAF-BBD6-16DA4A10F565}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Custom_Zipped_File_Name_Flag">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C8880053-DA84-4D22-BF4A-28675E536FAF}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR,4)YEAR(GETDATE()) + RIGHT(&quot;0&quot; + (DT_WSTR,2)MONTH(GETDATE()),2) + &#xA;RIGHT(&quot;0&quot; + (DT_WSTR,2)DAY(GETDATE()),2)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Date_String">
+      <DTS:VariableValue
+        DTS:DataType="8">20160506</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7300CA0C-E8E4-451E-BBA1-30B4B077DCFF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Delimiter">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6C384D0B-3BD0-4CB8-9F67-5745AB2089E9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Dependencies">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{66474B7D-58A2-49B5-9CE3-DE1B029ABBFA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Dest_File_Name">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B9B273C2-B245-448A-9285-138F1159F3AF}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::AllFeedFilePath] + (DT_WSTR, 75) @[$Project::Client_Display_Name]   + &quot;\\&quot; +  (DT_WSTR, 75) @[$Project::Feed_Name] + &quot;\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Dest_File_Path">
+      <DTS:VariableValue
+        DTS:DataType="8">\\PSCETLP00103\MECAnalytics\Client\All Feeds - Multi Client\ATT\TF090\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6B456682-276D-4A44-B338-B70494D3BAFF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Export_Procedure_Name">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9CC01C42-7051-456A-9B64-835DE3AEF58A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Feed_Name">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DE00CD84-14AC-4E29-91F7-F149C2BB1B4C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="file_extension">
+      <DTS:VariableValue
+        DTS:DataType="8">csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B8B29B8C-6600-4F11-ACFC-5D31BD43C90A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="hdr_Flag">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{55BB448B-CEA2-4074-A588-509304197478}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="quote_Flag">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E09298D2-9D02-4DA5-9755-12BDA44D51EE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="requires_dates">
+      <DTS:VariableValue
+        DTS:DataType="11">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E59145E2-4EAC-4398-AA46-8C871E54EF15}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResultSet">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2EED8FC5-C5E7-4D7E-8191-44766A2BD8D4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Sequence_Type">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AF475BED-A725-47C2-A42F-F024A8235BE9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Sequence_Type_Exists">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{85CD122B-694F-4AAF-A5A1-F59CE95E3C43}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Zip_File_Name">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8157BA7D-B8B8-47F6-9E02-F03A82752480}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="zip_Flag">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\File System Manager"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{AE66A9F6-874F-4EB6-BAD2-5C4101866E6D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="File System Manager">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\File System Manager\File_System_Manager"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{4B400A2B-4094-418E-BB10-23C1F07D2470}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="File_System_Manager"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>File_System_Manager.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>Dest_File_Path</ParameterName>
+                <BindedVariableOrParameterName>User::Dest_File_Path</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>Zip_File_Name</ParameterName>
+                <BindedVariableOrParameterName>User::Zip_File_Name</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\File System Manager\Get Date and File Name Flags"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3B960C9B-ECC5-4089-889A-450DCDD004FB}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Date and File Name Flags"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{ABC25250-3665-47B3-9249-AFDA50AB1D33}"
+              SQLTask:SqlStatementSource="select distinct [requires_dates]&#xA;&#x9;&#x9;&#x9;,&#x9;custom_Zip_Name_Flag&#xA;from [PDWTracker].[dbo].[classifications_feeds]&#xA;where feed_name = ? and client_name = ? and batch = ? "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::requires_dates" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::Custom_Zipped_File_Name_Flag" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Project::Feed_Name"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="$Project::Client_Display_Name"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="$Project::Batch_Name"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\File System Manager\Naming_Convention_Handler"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{81756154-bdd2-4c8a-bd7f-bac63cfda833}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Naming_Convention_Handler"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Naming_Convention_Handler.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>Custom_File_Name_Flag</ParameterName>
+                <BindedVariableOrParameterName>User::Custom_File_Name_Flag</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>Custom_Zipped_File_Name_Flag</ParameterName>
+                <BindedVariableOrParameterName>User::Custom_Zipped_File_Name_Flag</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>file_extension</ParameterName>
+                <BindedVariableOrParameterName>User::file_extension</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>requires_dates</ParameterName>
+                <BindedVariableOrParameterName>User::requires_dates</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>Sequence_Type</ParameterName>
+                <BindedVariableOrParameterName>User::Sequence_Type</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>zip_Flag</ParameterName>
+                <BindedVariableOrParameterName>User::zip_Flag</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\File System Manager.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{1228804C-16D7-4317-B9FB-7DDC603E9502}"
+          DTS:From="Package\File System Manager\Naming_Convention_Handler"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\File System Manager\File_System_Manager" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\File System Manager.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{6FDC0408-B268-4098-B496-733D565A53FC}"
+          DTS:From="Package\File System Manager\Get Date and File Name Flags"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\File System Manager\Naming_Convention_Handler" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get List of Sequences"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:DelayValidation="True"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{800063F3-D47D-44A4-AA4B-1C384976E746}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get List of Sequences"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{ABC25250-3665-47B3-9249-AFDA50AB1D33}"
+          SQLTask:SqlStatementSource="select distinct [feed_name]&#xA;, [export_Procedure_Name]&#xA;, [sequence_Type]&#xA;, [delimiter], &#xA;[dependencies] = CASE WHEN [dependencies] is null THEN '' ELSE [dependencies] END&#xA;, [batch]&#xA;, [sequence]&#xA;, [zip_Flag]&#xA;, [quote_Flag]&#xA;, [hdr_Flag]&#xA;, bb.[extension] &#xA;, cc.[connstring]&#xA;, [requires_dates]&#xA;, aa.custom_Feed_Name_Flag&#xA;, export.Custom_Zip_Flag(?, ?, ?) custom_Zip_Name_Flag&#xA;from [PDWTracker].[dbo].[classifications_feeds] aa &#xA;&#x9;JOIN [PDWTracker].[dbo].[classifications_extension] bb &#xA;&#x9;&#x9;ON aa.extension_id = bb.id &#xA;&#x9;JOIN [PDWTracker].[dbo].[classifications_connstring] cc &#xA;&#x9;&#x9;ON aa.connstring_id = cc.id &#xA;where feed_name = ? and client_name = ? and batch = ?&#xA;ORDER BY [sequence] asc"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ResultSet" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Project::Feed_Name"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Project::Client_Display_Name"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="$Project::Batch_Name"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="$Project::Feed_Name"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="$Project::Client_Display_Name"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="5"
+            SQLTask:DtsVariableName="$Project::Batch_Name"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Loop Over Sequences in Feed"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{650267E6-0925-46D3-809E-3B5B1686BE33}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Loop Over Sequences in Feed">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+        DTS:DTSID="{B0696721-9A8B-432D-8474-710E7ACDA54F}"
+        DTS:ObjectName="{B0696721-9A8B-432D-8474-710E7ACDA54F}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::ResultSet" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Loop Over Sequences in Feed\Dependency Framework"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{D71E8CF5-3091-4E1B-B46E-D6443B3D1823}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Dependency Framework">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Loop Over Sequences in Feed\Dependency Framework\Dependency_Handler (Internal)"
+              DTS:CreationName="SSIS.ExecutePackageTask.3"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{051B9408-AB38-441A-A9FC-4E2536A4FEF4}"
+              DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Dependency_Handler (Internal)"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>Dependency_Handler.dtsx</PackageName>
+                  <ParameterAssignment>
+                    <ParameterName>dependencies</ParameterName>
+                    <BindedVariableOrParameterName>User::Dependencies</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>Date_String</ParameterName>
+                    <BindedVariableOrParameterName>User::Date_String</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>Batch_Name</ParameterName>
+                    <BindedVariableOrParameterName>User::Batch_Name</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Loop Over Sequences in Feed\Export Framework"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{F8CFF5CF-9E34-4314-B277-9274CAC577B3}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Export Framework">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Loop Over Sequences in Feed\Export Framework\Export_Handler"
+              DTS:CreationName="SSIS.ExecutePackageTask.3"
+              DTS:DelayValidation="True"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{93D3C2A0-CE9C-4D9E-A82B-439148743B65}"
+              DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Export_Handler"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>Export_Handler.dtsx</PackageName>
+                  <ParameterAssignment>
+                    <ParameterName>Delimiter</ParameterName>
+                    <BindedVariableOrParameterName>User::Delimiter</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>Dest_File_Name</ParameterName>
+                    <BindedVariableOrParameterName>User::Dest_File_Name</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>Dest_File_Path</ParameterName>
+                    <BindedVariableOrParameterName>User::Dest_File_Path</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>Export_Procedure_Name</ParameterName>
+                    <BindedVariableOrParameterName>User::Export_Procedure_Name</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>Sequence_Type</ParameterName>
+                    <BindedVariableOrParameterName>User::Sequence_Type</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>quote_Flag</ParameterName>
+                    <BindedVariableOrParameterName>User::quote_Flag</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>hdr_Flag</ParameterName>
+                    <BindedVariableOrParameterName>User::hdr_Flag</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>connstring</ParameterName>
+                    <BindedVariableOrParameterName>User::connstring</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>requires_dates</ParameterName>
+                    <BindedVariableOrParameterName>User::requires_dates</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Loop Over Sequences in Feed\Export Framework\Naming_Convention_Handler"
+              DTS:CreationName="SSIS.ExecutePackageTask.3"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{DEE00A57-4A4E-44E3-BF8C-8A72745D0093}"
+              DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Naming_Convention_Handler"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>Naming_Convention_Handler.dtsx</PackageName>
+                  <ParameterAssignment>
+                    <ParameterName>Custom_File_Name_Flag</ParameterName>
+                    <BindedVariableOrParameterName>User::Custom_File_Name_Flag</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>Custom_Zipped_File_Name_Flag</ParameterName>
+                    <BindedVariableOrParameterName>User::Custom_Zipped_File_Name_Flag</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>file_extension</ParameterName>
+                    <BindedVariableOrParameterName>User::file_extension</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>requires_dates</ParameterName>
+                    <BindedVariableOrParameterName>User::requires_dates</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>Sequence_Type</ParameterName>
+                    <BindedVariableOrParameterName>User::Sequence_Type</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>zip_Flag</ParameterName>
+                    <BindedVariableOrParameterName>User::zip_Flag</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Loop Over Sequences in Feed\Export Framework\Zip_Handler"
+              DTS:CreationName="SSIS.ExecutePackageTask.3"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{2c4ec868-4f22-44e8-a04e-28fddee0dcd1}"
+              DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Zip_Handler"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>Zip_Handler.dtsx</PackageName>
+                  <ParameterAssignment>
+                    <ParameterName>Dest_File_Path</ParameterName>
+                    <BindedVariableOrParameterName>User::Dest_File_Path</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>Dest_File_Name</ParameterName>
+                    <BindedVariableOrParameterName>User::Dest_File_Name</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>Zip_File_Name</ParameterName>
+                    <BindedVariableOrParameterName>User::Zip_File_Name</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Loop Over Sequences in Feed\Export Framework.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{8E1D13DE-C5F5-4596-9341-6B84BF5C2540}"
+              DTS:EvalOp="1"
+              DTS:Expression="@[User::zip_Flag]"
+              DTS:From="Package\Loop Over Sequences in Feed\Export Framework\Export_Handler"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Loop Over Sequences in Feed\Export Framework\Zip_Handler" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Loop Over Sequences in Feed\Export Framework.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{B6FC39D0-8E2F-4554-B502-896EE0C51E7E}"
+              DTS:From="Package\Loop Over Sequences in Feed\Export Framework\Naming_Convention_Handler"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Loop Over Sequences in Feed\Export Framework\Export_Handler" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Loop Over Sequences in Feed\Validation Framework"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:Disabled="True"
+          DTS:DTSID="{eb8880fc-b112-4c7d-a0cd-3234adf34e2c}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Validation Framework">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Loop Over Sequences in Feed\Validation Framework\EST - get flag from validation mgr"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:DelayValidation="True"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{b114aabf-6d23-4713-8ba8-ccb1fd3915c4}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EST - get flag from validation mgr"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{ABC25250-3665-47B3-9249-AFDA50AB1D33}"
+                  SQLTask:SqlStatementSource=" SELECT flag&#xA; FROM [dbo].[validation_mgr] (NOLOCK)&#xA; WHERE global_task_ID = ?&#xA;  and type = 'Sequence_Type'&#xA;  and value = ?"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="flag"
+                    SQLTask:DtsVariableName="User::Sequence_Type_Exists" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="$Project::global_task_ID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::Sequence_Type"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Loop Over Sequences in Feed\Validation Framework\Validation_Handler"
+              DTS:CreationName="SSIS.ExecutePackageTask.3"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{2b1bb8f4-4bf8-443d-9101-32a5858efb1d}"
+              DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Validation_Handler"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>Validation_Handler.dtsx</PackageName>
+                  <ParameterAssignment>
+                    <ParameterName>Sequence_Type</ParameterName>
+                    <BindedVariableOrParameterName>User::Sequence_Type</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>Export_Procedure_Name</ParameterName>
+                    <BindedVariableOrParameterName>User::Export_Procedure_Name</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                  <ParameterAssignment>
+                    <ParameterName>connstring</ParameterName>
+                    <BindedVariableOrParameterName>User::connstring</BindedVariableOrParameterName>
+                  </ParameterAssignment>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Loop Over Sequences in Feed\Validation Framework.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{f01d92ab-bd6e-41e5-a5eb-c221dac0eb80}"
+              DTS:From="Package\Loop Over Sequences in Feed\Validation Framework\Validation_Handler"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Loop Over Sequences in Feed\Validation Framework\EST - get flag from validation mgr" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Loop Over Sequences in Feed.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{A189367E-233F-449B-8056-62678C3C1575}"
+          DTS:From="Package\Loop Over Sequences in Feed\Dependency Framework"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Loop Over Sequences in Feed\Export Framework" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Loop Over Sequences in Feed.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{AA833E7B-1811-4989-A625-D45596C39555}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::Sequence_Type_Exists]==1"
+          DTS:From="Package\Loop Over Sequences in Feed\Validation Framework"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Loop Over Sequences in Feed\Dependency Framework" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{100C191F-9DC6-48BF-A791-2C4568F44535}"
+          DTS:ObjectName="{100C191F-9DC6-48BF-A791-2C4568F44535}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::Feed_Name" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{0DAB8CE5-6E05-4FFE-BCD7-51348FAEC157}"
+          DTS:ObjectName="{0DAB8CE5-6E05-4FFE-BCD7-51348FAEC157}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::Export_Procedure_Name" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{AF7769E7-4792-413E-BD61-E8EC6EA2EB07}"
+          DTS:ObjectName="{AF7769E7-4792-413E-BD61-E8EC6EA2EB07}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::Sequence_Type" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{C4D3B1E0-BA63-4C83-BD97-7F6E700DD8BB}"
+          DTS:ObjectName="{C4D3B1E0-BA63-4C83-BD97-7F6E700DD8BB}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::Delimiter" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{8913C4E7-0BCC-460C-9BAA-0F86FABDFB04}"
+          DTS:ObjectName="{8913C4E7-0BCC-460C-9BAA-0F86FABDFB04}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::Dependencies" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{8B5BA3BB-DE60-4876-9BB4-B865EA3AF534}"
+          DTS:ObjectName="{8B5BA3BB-DE60-4876-9BB4-B865EA3AF534}"
+          DTS:ValueIndex="5"
+          DTS:VariableName="User::Batch_Name" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{B7C60CAC-C612-43E3-9FE4-D0CB9770660C}"
+          DTS:ObjectName="{B7C60CAC-C612-43E3-9FE4-D0CB9770660C}"
+          DTS:ValueIndex="7"
+          DTS:VariableName="User::zip_Flag" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{CA6DB397-C28E-43AF-8AAE-E77FD016E91B}"
+          DTS:ObjectName="{CA6DB397-C28E-43AF-8AAE-E77FD016E91B}"
+          DTS:ValueIndex="8"
+          DTS:VariableName="User::quote_Flag" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{71818248-6723-433B-8BBE-3602C7CACF6D}"
+          DTS:ObjectName="{71818248-6723-433B-8BBE-3602C7CACF6D}"
+          DTS:ValueIndex="9"
+          DTS:VariableName="User::hdr_Flag" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{AF0F7DB8-DC13-42AE-BC92-D624832D679C}"
+          DTS:ObjectName="{AF0F7DB8-DC13-42AE-BC92-D624832D679C}"
+          DTS:ValueIndex="10"
+          DTS:VariableName="User::file_extension" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{559F7FE7-542B-4A65-89F2-9B61039639B2}"
+          DTS:ObjectName="{559F7FE7-542B-4A65-89F2-9B61039639B2}"
+          DTS:ValueIndex="11"
+          DTS:VariableName="User::connstring" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{7AB1C8C6-34D1-4114-8040-AD3444EC89B5}"
+          DTS:ObjectName="{7AB1C8C6-34D1-4114-8040-AD3444EC89B5}"
+          DTS:ValueIndex="12"
+          DTS:VariableName="User::requires_dates" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{B00DDC85-908A-4CDD-BB3D-3356213B10AB}"
+          DTS:ObjectName="{B00DDC85-908A-4CDD-BB3D-3356213B10AB}"
+          DTS:ValueIndex="13"
+          DTS:VariableName="User::Custom_File_Name_Flag" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{6DE7F54F-67CE-4ADF-96CE-783FB5E0ACED}"
+          DTS:ObjectName="{6DE7F54F-67CE-4ADF-96CE-783FB5E0ACED}"
+          DTS:ValueIndex="14"
+          DTS:VariableName="User::Custom_Zipped_File_Name_Flag" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Notification Framework"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{4C66D66C-4088-4BF6-A340-A5632ABB7C71}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Notification Framework">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Notification Framework\Notification_Handler"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{138DDD71-4CF9-4F89-8695-28A17F1BA799}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Notification_Handler"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Notification_Handler.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>Dest_File_Path</ParameterName>
+                <BindedVariableOrParameterName>User::Dest_File_Path</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>Sequence_Type_Exists</ParameterName>
+                <BindedVariableOrParameterName>User::Sequence_Type_Exists</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FCFFE160-0E75-4823-AA0C-4E5A15C9DF97}"
+      DTS:From="Package\File System Manager"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get List of Sequences" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{F61AAA8B-215E-4AAC-884F-567BE4E391C1}"
+      DTS:From="Package\Get List of Sequences"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Loop Over Sequences in Feed" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{6941B1E4-559C-4995-B994-4ACF4B520336}"
+      DTS:From="Package\Loop Over Sequences in Feed"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Notification Framework"
+      DTS:Value="2" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\File System Manager\File_System_Manager"
+          TopLeft="27.5,157.5" />
+        <NodeLayout
+          Size="221,42"
+          Id="Package\File System Manager\Get Date and File Name Flags"
+          TopLeft="16,16" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\File System Manager\Naming_Convention_Handler"
+          TopLeft="14,87" />
+        <EdgeLayout
+          Id="Package\File System Manager.PrecedenceConstraints[Constraint]"
+          TopLeft="120.75,129">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.5"
+              Start="0,0"
+              End="0,21">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\File System Manager.PrecedenceConstraints[Constraint 1]"
+          TopLeft="124.75,58">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="276,254"
+          Size="276,297"
+          Id="Package\File System Manager"
+          TopLeft="25,1.5" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Get List of Sequences"
+          TopLeft="75,331.5" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Loop Over Sequences in Feed\Dependency Framework\Dependency_Handler (Internal)"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="241,103"
+          Size="241,146"
+          Id="Package\Loop Over Sequences in Feed\Dependency Framework"
+          TopLeft="11,313.5" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Loop Over Sequences in Feed\Export Framework\Export_Handler"
+          TopLeft="31.5,88.5" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Loop Over Sequences in Feed\Export Framework\Naming_Convention_Handler"
+          TopLeft="5.5,22" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Loop Over Sequences in Feed\Export Framework\Zip_Handler"
+          TopLeft="35.5,165.5" />
+        <EdgeLayout
+          Id="Package\Loop Over Sequences in Feed\Export Framework.PrecedenceConstraints[Constraint]"
+          TopLeft="106.5,130.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,5.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Loop Over Sequences in Feed\Export Framework.PrecedenceConstraints[Constraint 1]"
+          TopLeft="111.5,64">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.5"
+              Start="0,0"
+              End="0,17">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="228,263"
+          Size="228,306"
+          Id="Package\Loop Over Sequences in Feed\Export Framework"
+          TopLeft="22.0000000000001,519.5" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Loop Over Sequences in Feed\Validation Framework\EST - get flag from validation mgr"
+          TopLeft="5.50000000000001,107.5" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Loop Over Sequences in Feed\Validation Framework\Validation_Handler"
+          TopLeft="41.5,5.5" />
+        <EdgeLayout
+          Id="Package\Loop Over Sequences in Feed\Validation Framework.PrecedenceConstraints[Constraint]"
+          TopLeft="126,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="252,205"
+          Size="252,248"
+          Id="Package\Loop Over Sequences in Feed\Validation Framework"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Loop Over Sequences in Feed.PrecedenceConstraints[Constraint]"
+          TopLeft="133.75,459.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Loop Over Sequences in Feed.PrecedenceConstraints[Constraint 1]"
+          TopLeft="131.5,253.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="263,881"
+          Size="263,924"
+          Id="Package\Loop Over Sequences in Feed"
+          TopLeft="28,406.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Notification Framework\Notification_Handler"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="187,103"
+          Size="187,146"
+          Id="Package\Notification Framework"
+          TopLeft="64.0000000000001,1372.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="164.75,298.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="163,373.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="158.5,1330.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,11.4453125,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
